@@ -1,0 +1,47 @@
+body {
+    background-color: rgb(53, 53, 53);
+    color: white; 
+}
+
+#container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    height: 800px; 
+}
+
+#inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    
+    align-items: center;
+}
+
+img {
+    
+}
+
+#info2 {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    padding: 6px; 
+    border-radius: 12px;
+    width: 50px; 
+    margin: 8px; 
+}
+
+#plot {
+    width: 250px; 
+    margin: 30px; 
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+}
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Development Assignment 2</title>
+</head>
+
+<body>
+    <h2 id="title">title</h2>
+    <div id="container">
+
+        <div id="info">
+            <div id="info2">
+                <img id="image">
+                <div id="plot">plot</div>
+                
+            </div>
+            <h5 id="director">director</h5>
+            <div>
+                <ul id="actorList">
+                </ul>
+            </div>
+        </div>
+
+        <div id="inputs">
+            <input id="textInput" type="text" placeholder="enter a movie"><button id="textBtn" class="btn">click</button>
+            
+            <select id="dropInput">
+                <option>--select--</option>
+                <option>Star Wars</option>
+                <option>The Empire Strikes Back</option>
+                <option>Return of the Jedi</option>
+            </select><button id="dropBtn" class="btn">click</button>
+            
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        document.querySelector('#textBtn').addEventListener('click', () => {
+            let inputText = document.querySelector('#textInput').value;
+            getMovieData(inputText);
+        })
+
+        document.querySelector('#dropBtn').addEventListener('click', () => {
+            let input = document.querySelector('#dropInput').value;
+            getMovieData(input);
+        })
+
+        function getMovieData(title) {
+            let plot, image, actors, director;
+
+            fetch('https://www.omdbapi.com/?apikey=a407b204&t=' + title)
+                .then(function (response) {
+                    return response.json();
+                }).then(function (json) {
+                    document.querySelector('#title').textContent = json.Title;
+                    document.querySelector('#director').textContent = "directed by " + json.Director;
+
+                    actors = JSON.stringify(json.Actors);
+                    let split = actors.split(',');
+                    let ul = document.querySelector('ul').innerHTML.trim();
+                    
+                    
+
+                    document.querySelector('#image').src = json.Poster;
+
+                    document.querySelector('#plot').textContent = json.Plot;
+
+                    if (ul !== "") {
+                        document.querySelector('#actorList').textContent = "";
+                    } 
+
+                    for (let i = 0; i < split.length; i++) {
+                        let li = document.createElement('li');
+                        li.innerHTML = split[i];
+                        document.querySelector('#actorList').appendChild(li);
+                    }
+
+                    
+                });
+
+            // https://www.omdbapi.com/?apikey=a407b204&t= 
+        }
+
+    </script>
+</body>
+
+</html>
