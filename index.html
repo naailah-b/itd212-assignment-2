@@ -4,40 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Development Assignment 2</title>
 </head>
 
 <body>
-    <h2 id="title">title</h2>
+    <div id="infoTitle">
+        <div id="miniTitle"></div>
+        <h2 id="title"></h2>
+    </div>
     <div id="container">
-
         <div id="info">
             <div id="info2">
                 <img id="image">
-                <div id="plot">plot</div>
-                
+                <div id="info3">
+                    <div>
+                        <ul id="actorList">
+                        </ul>
+                    </div>
+                    <div id="plot"></div>
+
+                </div>
             </div>
-            <h5 id="director">director</h5>
-            <div>
-                <ul id="actorList">
-                </ul>
-            </div>
+            <h5 id="director"></h5>
         </div>
 
         <div id="inputs">
-            <input id="textInput" type="text" placeholder="enter a movie"><button id="textBtn" class="btn">click</button>
-            
-            <select id="dropInput">
-                <option>--select--</option>
-                <option>Star Wars</option>
-                <option>The Empire Strikes Back</option>
-                <option>Return of the Jedi</option>
-            </select><button id="dropBtn" class="btn">click</button>
-            
+            <div id="input1">
+                <input class="titleInput" id="textInput" type="text" placeholder="enter a movie"><button id="textBtn"
+                    class="btn">click</button>
+            </div>
+
+            <div id="input2">
+                <select class="titleInput" id="dropInput">
+                    <option>--select--</option>
+                    <option>Star Wars</option>
+                    <option>The Empire Strikes Back</option>
+                    <option>Return of the Jedi</option>
+                </select><button id="dropBtn" class="btn">click</button>
+            </div>
+
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script>
         document.querySelector('#textBtn').addEventListener('click', () => {
             let inputText = document.querySelector('#textInput').value;
@@ -59,30 +73,30 @@
                     document.querySelector('#title').textContent = json.Title;
                     document.querySelector('#director').textContent = "directed by " + json.Director;
 
-                    actors = JSON.stringify(json.Actors);
-                    let split = actors.split(',');
+                    let split = json.Actors.split(',');
                     let ul = document.querySelector('ul').innerHTML.trim();
-                    
-                    
 
                     document.querySelector('#image').src = json.Poster;
-
-                    document.querySelector('#plot').textContent = json.Plot;
+                    document.querySelector('#plot').textContent = "Plot: " + json.Plot;
 
                     if (ul !== "") {
                         document.querySelector('#actorList').textContent = "";
-                    } 
+                    }
+
+                    document.querySelector('#miniTitle').textContent = 'Title ↓';
+
+                    let act = document.createElement('li');
+                    act.innerHTML = 'Actors ';
+                    act.id = "list1";
+                    document.querySelector('#actorList').appendChild(act);
+
 
                     for (let i = 0; i < split.length; i++) {
                         let li = document.createElement('li');
                         li.innerHTML = split[i];
                         document.querySelector('#actorList').appendChild(li);
                     }
-
-                    
                 });
-
-            // https://www.omdbapi.com/?apikey=a407b204&t= 
         }
 
     </script>
