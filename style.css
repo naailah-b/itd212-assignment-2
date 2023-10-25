@@ -17,6 +17,10 @@ body {
   align-items: center;
   height: 90vh;
 }
+h2 {
+    margin: 0;
+    padding: 0;
+}
 
 #title {
   font-size: 36px;
@@ -46,7 +50,7 @@ body {
 }
 
 #miniTitle {
-  font-size: 10px;
+  font-size: 8px;
 }
 
 #info2 {
