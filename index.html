@@ -22,6 +22,7 @@
         <div id="info">
             <div id="info2">
                 <img id="image">
+
                 <div id="info3">
                     <div>
                         <ul id="actorList">
@@ -31,6 +32,7 @@
 
                 </div>
             </div>
+            <div id="posterTitle"></div>
             <h5 id="director"></h5>
         </div>
 
@@ -84,6 +86,8 @@
                     }
 
                     document.querySelector('#miniTitle').textContent = 'Title ↓';
+
+                    document.querySelector('#posterTitle').textContent = "poster for " + json.Title;
 
                     let act = document.createElement('li');
                     act.innerHTML = 'Actors ';
